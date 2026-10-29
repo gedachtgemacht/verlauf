@@ -4,6 +4,8 @@
 
 ![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue) ![PWA](https://img.shields.io/badge/PWA-installable-5a0fc8) ![offline](https://img.shields.io/badge/offline-yes-2ea44f) ![no dependencies](https://img.shields.io/badge/dependencies-none-lightgrey)
 
+**Try it:** https://gedachtgemacht.github.io/verlauf/ (works in any phone browser, install via "Add to Home Screen")
+
 The app interface is in German. It reads German and English WhatsApp exports.
 
 Family and friends' chats live inside an app. The export is a `_chat.txt` with attachments in a ZIP, and its date format changes with language, platform and app version and is documented nowhere. If you switch phones, lose the account or die, you leave behind chats nobody can open. verlauf. converts the export into plain HTML without JavaScript, normalized plain text and machine-readable messages, includes the original files unchanged and writes a checksum list in `sha256sum` format. A format description is part of the package.
