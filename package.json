@@ -1,0 +1,12 @@
+{
+  "name": "verlauf",
+  "version": "1.0.0",
+  "description": "Macht aus einem WhatsApp-Export ein geprüftes Archivpaket aus HTML und Klartext.",
+  "type": "module",
+  "license": "AGPL-3.0",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "bauen": "node bauen.js"
+  }
+}

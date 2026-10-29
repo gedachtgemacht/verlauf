@@ -1,0 +1,151 @@
+{
+  "format": "verlauf-archiv 1",
+  "hinweis": "Alle Namen sind erfunden. Felder von parse: eingabe (Inhalt der _chat.txt), optionen, reihenfolge_erkannt, nachrichten, txt, jsonl, unerkannt.",
+  "parse": [
+    {
+      "name": "1 android de, scope testvektor 1",
+      "eingabe": "29.10.26, 14:05 - Max Muster: Hallo\n",
+      "optionen": {},
+      "reihenfolge_erkannt": "dm",
+      "nachrichten": [
+        {"n": 1, "zeit": "2026-10-29T14:05", "von": "Max Muster", "text": "Hallo", "anhang": null, "anhang_vorhanden": false, "zeile": 1}
+      ],
+      "txt": "[2026-10-29 14:05] Max Muster: Hallo\n",
+      "jsonl": "{\"n\":1,\"zeit\":\"2026-10-29T14:05\",\"von\":\"Max Muster\",\"text\":\"Hallo\",\"anhang\":null,\"anhang_vorhanden\":false,\"zeile\":1}\n",
+      "unerkannt": []
+    },
+    {
+      "name": "2 ios en 12h mit folgezeile, reihenfolge vorgegeben",
+      "eingabe": "[3/4/26, 2:05:09 PM] Erika Beispiel: Hi\nzweite Zeile\n",
+      "optionen": {"reihenfolge": "md"},
+      "reihenfolge_erkannt": "unsicher",
+      "nachrichten": [
+        {"n": 1, "zeit": "2026-03-04T14:05:09", "von": "Erika Beispiel", "text": "Hi\nzweite Zeile", "anhang": null, "anhang_vorhanden": false, "zeile": 1}
+      ],
+      "txt": "[2026-03-04 14:05:09] Erika Beispiel: Hi\n  zweite Zeile\n",
+      "jsonl": "{\"n\":1,\"zeit\":\"2026-03-04T14:05:09\",\"von\":\"Erika Beispiel\",\"text\":\"Hi\\nzweite Zeile\",\"anhang\":null,\"anhang_vorhanden\":false,\"zeile\":1}\n",
+      "unerkannt": []
+    },
+    {
+      "name": "2b ios en, monat/tag automatisch durch 3/14",
+      "eingabe": "[3/4/26, 2:05:09 PM] Erika Beispiel: Hi\n[3/14/26, 9:00:00 AM] Max Muster: Ok\n",
+      "optionen": {},
+      "reihenfolge_erkannt": "md",
+      "nachrichten": [
+        {"n": 1, "zeit": "2026-03-04T14:05:09", "von": "Erika Beispiel", "text": "Hi", "anhang": null, "anhang_vorhanden": false, "zeile": 1},
+        {"n": 2, "zeit": "2026-03-14T09:00:00", "von": "Max Muster", "text": "Ok", "anhang": null, "anhang_vorhanden": false, "zeile": 2}
+      ],
+      "txt": "[2026-03-04 14:05:09] Erika Beispiel: Hi\n[2026-03-14 09:00:00] Max Muster: Ok\n",
+      "unerkannt": []
+    },
+    {
+      "name": "2c 12 am und 12 pm, schmales leerzeichen vor pm",
+      "eingabe": "1/2/26, 12:00 AM - Max Muster: a\n1/2/26, 12:00 PM - Max Muster: b\n",
+      "optionen": {"reihenfolge": "md"},
+      "reihenfolge_erkannt": "unsicher",
+      "nachrichten": [
+        {"n": 1, "zeit": "2026-01-02T00:00", "von": "Max Muster", "text": "a", "anhang": null, "anhang_vorhanden": false, "zeile": 1},
+        {"n": 2, "zeit": "2026-01-02T12:00", "von": "Max Muster", "text": "b", "anhang": null, "anhang_vorhanden": false, "zeile": 2}
+      ],
+      "txt": "[2026-01-02 00:00] Max Muster: a\n[2026-01-02 12:00] Max Muster: b\n",
+      "unerkannt": []
+    },
+    {
+      "name": "systemnachricht ohne absender",
+      "eingabe": "29.10.26, 14:06 - Erika Beispiel hat die Gruppe erstellt\n",
+      "optionen": {},
+      "reihenfolge_erkannt": "dm",
+      "nachrichten": [
+        {"n": 1, "zeit": "2026-10-29T14:06", "von": null, "text": "Erika Beispiel hat die Gruppe erstellt", "anhang": null, "anhang_vorhanden": false, "zeile": 1}
+      ],
+      "txt": "[2026-10-29 14:06] * Erika Beispiel hat die Gruppe erstellt\n",
+      "jsonl": "{\"n\":1,\"zeit\":\"2026-10-29T14:06\",\"von\":null,\"text\":\"Erika Beispiel hat die Gruppe erstellt\",\"anhang\":null,\"anhang_vorhanden\":false,\"zeile\":1}\n",
+      "unerkannt": []
+    },
+    {
+      "name": "ios de mit richtungszeichen und vorhandenem anhang",
+      "eingabe": "[29.10.26, 14:05:33] Max Muster: ‎<Anhang: 00000012-PHOTO-2026-10-29-14-05-33.jpg>\n",
+      "optionen": {"anhaenge": ["00000012-PHOTO-2026-10-29-14-05-33.jpg"]},
+      "reihenfolge_erkannt": "dm",
+      "nachrichten": [
+        {"n": 1, "zeit": "2026-10-29T14:05:33", "von": "Max Muster", "text": "<Anhang: 00000012-PHOTO-2026-10-29-14-05-33.jpg>", "anhang": "00000012-PHOTO-2026-10-29-14-05-33.jpg", "anhang_vorhanden": true, "zeile": 1}
+      ],
+      "txt": "[2026-10-29 14:05:33] Max Muster: <Anhang: 00000012-PHOTO-2026-10-29-14-05-33.jpg>\n",
+      "unerkannt": []
+    },
+    {
+      "name": "android en 12h mit fehlendem anhang und bildunterschrift",
+      "eingabe": "10/29/26, 2:05 PM - Max Muster: IMG-20261029-WA0001.jpg (file attached)\nLook\n",
+      "optionen": {},
+      "reihenfolge_erkannt": "md",
+      "nachrichten": [
+        {"n": 1, "zeit": "2026-10-29T14:05", "von": "Max Muster", "text": "IMG-20261029-WA0001.jpg (file attached)\nLook", "anhang": "IMG-20261029-WA0001.jpg", "anhang_vorhanden": false, "zeile": 1}
+      ],
+      "txt": "[2026-10-29 14:05] Max Muster: IMG-20261029-WA0001.jpg (file attached)\n  Look\n",
+      "unerkannt": []
+    },
+    {
+      "name": "bom und crlf",
+      "eingabe": "﻿29.10.26, 14:05 - Max Muster: Hallo\r\nWelt\r\n",
+      "optionen": {},
+      "reihenfolge_erkannt": "dm",
+      "nachrichten": [
+        {"n": 1, "zeit": "2026-10-29T14:05", "von": "Max Muster", "text": "Hallo\nWelt", "anhang": null, "anhang_vorhanden": false, "zeile": 1}
+      ],
+      "txt": "[2026-10-29 14:05] Max Muster: Hallo\n  Welt\n",
+      "unerkannt": []
+    },
+    {
+      "name": "zeile vor der ersten nachricht",
+      "eingabe": "Kopf ohne Datum\n29.10.26, 14:05 - Max Muster: Hallo\n",
+      "optionen": {},
+      "reihenfolge_erkannt": "dm",
+      "nachrichten": [
+        {"n": 1, "zeit": "2026-10-29T14:05", "von": "Max Muster", "text": "Hallo", "anhang": null, "anhang_vorhanden": false, "zeile": 2}
+      ],
+      "txt": "[2026-10-29 14:05] Max Muster: Hallo\n",
+      "unerkannt": [{"zeile": 1, "text": "Kopf ohne Datum"}]
+    },
+    {
+      "name": "leere datei",
+      "eingabe": "",
+      "optionen": {},
+      "reihenfolge_erkannt": "dm",
+      "nachrichten": [],
+      "txt": "",
+      "jsonl": "",
+      "unerkannt": []
+    }
+  ],
+  "reihenfolge": [
+    {"zeilen": ["29.10.26, 14:05 - A: x"], "ergebnis": "dm"},
+    {"zeilen": ["1.2.26, 14:05 - A: x"], "ergebnis": "dm"},
+    {"zeilen": ["[1/2/26, 2:05:00 PM] A: x"], "ergebnis": "unsicher"},
+    {"zeilen": ["[1/2/26, 2:05:00 PM] A: x", "[1/20/26, 2:05:00 PM] A: y"], "ergebnis": "md"},
+    {"zeilen": ["13/1/26, 10:00 - A: x", "1/13/26, 10:00 - A: y"], "ergebnis": "widerspruch"}
+  ],
+  "sha256": [
+    {"eingabe_utf8": "", "hex": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"},
+    {"eingabe_utf8": "abc", "hex": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"},
+    {"eingabe_utf8": "verlauf-archiv 1\n", "hex": "ce8de56b075ced1da43799a8a946dd02e35d428af6cc43a3d7664847b47fd6fa"},
+    {"eingabe_wiederholt": {"zeichen": "a", "anzahl": 1000000}, "hex": "cdc76e5c9914fb9281a1c7e284d73e67f1809a48a497200e046d39ccc7112cd0"}
+  ],
+  "crc32": [
+    {"eingabe_utf8": "123456789", "hex": "cbf43926"},
+    {"eingabe_utf8": "", "hex": "00000000"}
+  ],
+  "pruefsummen": [
+    {
+      "name": "sortierung nach utf-8-bytes, nicht nach utf-16",
+      "dateien_utf8": {
+        "chat.txt": "abc",
+        "original/😀.jpg": "y",
+        "LIESMICH.txt": "verlauf-archiv 1\n",
+        "original/Ａ.jpg": "x",
+        "original/_chat.txt": ""
+      },
+      "liste": "ce8de56b075ced1da43799a8a946dd02e35d428af6cc43a3d7664847b47fd6fa  LIESMICH.txt\nba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad  chat.txt\ne3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  original/_chat.txt\n2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881  original/Ａ.jpg\na1fce4363854ff888cff4b8e7875d600c2682390412a8cf79b37d0b11148b0fa  original/😀.jpg\n",
+      "kennung": "4ee25225d64f94859196bd5f4f116564259dc5b3e7bc1106fbb32cb0ec0c3d15"
+    }
+  ]
+}
