@@ -1,85 +1,91 @@
 # verlauf.
 
-**Wer kann deinen Chat in zwanzig Jahren noch lesen?** verlauf. macht aus einem WhatsApp-Export ein Archivpaket, das auch ohne die App lesbar und prüfbar bleibt.
+**Who will still be able to read your chat in twenty years?** verlauf. turns a WhatsApp chat export into an archive package that stays readable and verifiable without the app. It runs in the browser as an offline PWA, with no upload and no account.
 
-Familien- und Freundeschats leben in einer App. Der Export ist eine `_chat.txt` mit Anhängen in einem ZIP, deren Datumsformat je nach Sprache, Plattform und App-Version wechselt und nirgends beschrieben ist. Wer das Telefon wechselt, das Konto verliert oder stirbt, hinterlässt Chats, die keiner mehr öffnen kann. verlauf. wandelt den Export in schlichtes HTML ohne JavaScript, normalisierten Klartext und maschinenlesbare Nachrichten um, legt die Originaldateien unverändert bei und schreibt eine Prüfsummenliste im Format von `sha256sum`. Eine Formatbeschreibung liegt im Paket.
+![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue) ![PWA](https://img.shields.io/badge/PWA-installable-5a0fc8) ![offline](https://img.shields.io/badge/offline-yes-2ea44f) ![no dependencies](https://img.shields.io/badge/dependencies-none-lightgrey)
 
-Reine Rechnung im Browser, keine KI, kein Server. Alles bleibt auf deinem Gerät.
+The app interface is in German. It reads German and English WhatsApp exports.
+
+Family and friends' chats live inside an app. The export is a `_chat.txt` with attachments in a ZIP, and its date format changes with language, platform and app version and is documented nowhere. If you switch phones, lose the account or die, you leave behind chats nobody can open. verlauf. converts the export into plain HTML without JavaScript, normalized plain text and machine-readable messages, includes the original files unchanged and writes a checksum list in `sha256sum` format. A format description is part of the package.
+
+Pure computation in the browser, no AI, no server. Everything stays on your device.
 
 <p align="center">
-  <img src="bilder/1-uebersicht.png" width="240" alt="">
-  <img src="bilder/2-breit.png" width="480" alt="">
+  <img src="bilder/1-uebersicht.png" width="240" alt="verlauf. on a phone: drop zone for the WhatsApp export, button to load the example, tabs for convert, verify and about">
+  <img src="bilder/2-breit.png" width="480" alt="verlauf. on desktop: start screen with the drop zone for a WhatsApp export">
 </p>
 
-## Warum
+## Why
 
-Das Anzeigen von WhatsApp-Exporten ist nicht neu, es gibt freie Anzeiger und Umwandler. Was fehlt, ist ein **Archivpaket**, das sich selbst erklärt und sich später mit Standardwerkzeugen prüfen lässt, auch ohne verlauf. Neu ist die Verbindung aus Normalisierung, Selbstbeschreibung und Prüfbarkeit für Laien. Die Spezifikation steht in `SPEC.md` (`verlauf-archiv 1`), sodass andere kompatible Werkzeuge bauen können.
+Viewing WhatsApp exports is not new, there are free viewers and converters. What is missing is an **archive package** that explains itself and can be verified later with standard tools, even without verlauf. What is new is the combination of normalization, self-description and verifiability for non-technical people. The specification is in `SPEC.md` (`verlauf-archiv 1`), so others can build compatible tools.
 
-## Funktionen
+## Features
 
-- **Export laden**: ZIP mit `_chat.txt` und Anhängen oder nur die `.txt`, per Dateiauswahl oder Ziehen
-- **Zeilenformate** von Android und iOS, Deutsch und Englisch, 12 und 24 Stunden, mit und ohne Sekunden
-- **Datumsreihenfolge** (Tag/Monat oder Monat/Tag) wird erkannt. Bleibt sie mehrdeutig, fragt verlauf. mit Beispieldatum in beiden Lesarten, statt still zu raten
-- **Vorschau**: Nachrichten, Teilnehmende, Zeitraum, Anhänge gefunden und fehlend, nicht erkannte Zeilen mit Nummern
-- **Archivpaket** als ZIP: `LIESMICH.txt`, `chat.html`, `chat.txt`, `nachrichten.jsonl`, `original/` und `pruefsummen.sha256`
-- **Archivkennung**: die SHA-256 der Prüfsummenliste, groß angezeigt zum Notieren oder Ausdrucken
-- **Prüfen**: Archiv-ZIP laden, alle Prüfsummen nachrechnen, Ergebnis pro Datei `ok`, `geändert`, `fehlt` oder `zusätzlich`, optional Vergleich mit einer notierten Kennung
-- **Beispielchat**, erfunden, als Beispiel markiert und mit einem Klick entfernbar
-- Hell und dunkel, funktioniert offline, installierbar als App
+- **Load an export**: a ZIP with `_chat.txt` and attachments, or just the `.txt`, via file picker or drag and drop
+- **Line formats** from Android and iOS, German and English, 12 and 24 hours, with and without seconds
+- **Date order** (day/month or month/day) is detected. If it stays ambiguous, verlauf. asks you with a sample date in both readings instead of guessing silently
+- **Preview**: messages, participants, time span, attachments found and missing, unrecognized lines with numbers
+- **Archive package** as a ZIP: `LIESMICH.txt`, `chat.html`, `chat.txt`, `nachrichten.jsonl`, `original/` and `pruefsummen.sha256`
+- **Archive ID**: the SHA-256 of the checksum list, shown large so you can write it down or print it
+- **Verify**: load an archive ZIP, recompute all checksums, result per file `ok`, `geändert` ("changed"), `fehlt` ("missing") or `zusätzlich` ("extra"), optionally compared with an archive ID you noted
+- **Example chat**, made up, marked as an example and removable with one click
+- Light and dark, works offline, installable as an app
 
-## Datenschutz
+## Privacy
 
-Nichts verlässt dein Gerät. verlauf. hat keinen Server, kein Konto, keine Analyse, keine Werbung und lädt nichts aus dem Netz nach. Dein Chat wird im Arbeitsspeicher des Browsers verarbeitet und nirgends gespeichert. Im Browser liegt nur die Einstellung hell oder dunkel (localStorage). Das Archiv entsteht erst, wenn du es herunterlädst.
+Nothing leaves your device. verlauf. has no server, no account, no analytics, no ads and loads nothing from the network. Your chat is processed in the browser's memory and stored nowhere. The only thing kept in the browser is the light or dark setting (localStorage). The archive only exists once you download it.
 
-Ein Archiv enthält den ganzen Chat im Klartext. Bewahre es so auf, wie du den Chat selbst aufbewahren würdest.
+An archive contains the whole chat in plain text. Keep it the way you would keep the chat itself.
 
-## Installation
+## Install
 
-verlauf. ist eine statische Web-App. Es gibt keine Abhängigkeiten.
+verlauf. is a static web app. There are no dependencies.
 
-1. Den Ordner auf einen beliebigen statischen Host legen (eigener Webspace, GitHub Pages, ein Raspberry Pi). Für die Installation als App ist HTTPS nötig. `index.html` läuft auch direkt aus dem Dateisystem.
-2. Die Adresse im Browser öffnen.
-3. Im Browsermenü **Zum Startbildschirm hinzufügen** wählen. Danach startet verlauf. wie eine App und funktioniert auch ohne Netz.
+1. Put the folder on any static host (your own web space, GitHub Pages, a Raspberry Pi). Installing as an app needs HTTPS. `index.html` also runs straight from the file system.
+2. Open the address in the browser.
+3. In the browser menu choose **Add to Home Screen**. After that verlauf. starts like an app and also works without a network.
 
-Lokal testen:
+Test locally:
 
 ```
 python3 -m http.server 8000
 ```
 
-Dann `http://localhost:8000` im Browser öffnen.
+Then open `http://localhost:8000` in the browser.
 
-Die Logik liegt in `verlauf.js`. `node bauen.js` kopiert sie in `index.html`, damit die Seite ohne Server läuft. Tests: `node --test`.
+The logic lives in `verlauf.js`. `node bauen.js` copies it into `index.html`, so the page runs without a server. Tests: `node --test`.
 
-## Wie es funktioniert
+## How it works
 
-Die vollständige Beschreibung steht in `SPEC.md`, die Referenzimplementierung ist `verlauf.js` (ein ES-Modul ohne Abhängigkeiten, nur Standardbibliothek von Browser und Node). Kurz:
+The full description is in `SPEC.md`, the reference implementation is `verlauf.js` (an ES module with no dependencies, only the standard library of browser and Node). In short:
 
-- **Lesen.** Der Export wird als UTF-8 gelesen. BOM, CRLF, unsichtbare Richtungszeichen und schmale Leerzeichen werden normalisiert. Eine Zeile mit Datum und Uhrzeit beginnt eine neue Nachricht, alle anderen Zeilen hängen an die vorige an. Zeilen vor der ersten Nachricht und Zeilen mit unmöglichem Datum werden offen gemeldet.
-- **Datumsreihenfolge.** Ist irgendwo das erste Feld größer als 12, gilt Tag/Monat, ist das zweite größer als 12, gilt Monat/Tag. Sonst heißt der Punkt als Trenner Tag/Monat, der Schrägstrich ist unsicher, und die Oberfläche fragt.
-- **Paket.** ZIP ohne Kompression, damit es auch mit einfachen Werkzeugen lesbar bleibt. `chat.txt` und `nachrichten.jsonl` sind normiert und byte-genau beschrieben. `chat.html` und `LIESMICH.txt` dürfen sich zwischen Implementierungen unterscheiden.
-- **Prüfsummen.** `pruefsummen.sha256` funktioniert mit `sha256sum -c pruefsummen.sha256` im entpackten Paketordner. Sortiert wird nach UTF-8-Bytes.
-- **Testvektoren.** `testvektoren.json` enthält Parserfälle, bekannte SHA-256- und CRC-32-Werte und einen Prüfsummenfall, in dem UTF-8- und UTF-16-Sortierung auseinanderfallen. Nachrechnen mit `node --test`.
+- **Reading.** The export is read as UTF-8. BOM, CRLF, invisible direction marks and narrow spaces are normalized. A line with date and time starts a new message, all other lines are appended to the previous one. Lines before the first message and lines with an impossible date are reported openly.
+- **Date order.** If the first field is greater than 12 anywhere, day/month applies; if the second is greater than 12, month/day applies. Otherwise a dot as separator means day/month, a slash is uncertain, and the interface asks.
+- **Package.** ZIP without compression, so it stays readable with simple tools. `chat.txt` and `nachrichten.jsonl` are standardized and described byte for byte. `chat.html` and `LIESMICH.txt` may differ between implementations.
+- **Checksums.** `pruefsummen.sha256` works with `sha256sum -c pruefsummen.sha256` in the unpacked package folder. Sorting is by UTF-8 bytes.
+- **Test vectors.** `testvektoren.json` contains parser cases, known SHA-256 and CRC-32 values and a checksum case where UTF-8 and UTF-16 sorting differ. Recompute with `node --test`.
 
-**Bekannt und getestet:** die Zeilenformate oben, der Rundlauf Umwandeln, Zurücklesen, Prüfen, die Testvektoren.
+**Known and tested:** the line formats above, the round trip convert, read back, verify, and the test vectors.
 
-**Grenzen:**
+**Limits:**
 
-- Nur WhatsApp. Andere Messenger sind nicht vorgesehen, die Spezifikation lässt Raum dafür.
-- Weitere Sprachen und Datumsvarianten (etwa Französisch oder Spanisch) sind nicht geprüft und werden nicht erkannt. Was nicht passt, wird als nicht erkannt gemeldet.
-- Zeiten sind Ortszeit des Geräts ohne Zeitzone und werden unverändert übernommen.
-- Kein Entschlüsseln, kein Auslesen von Telefon-Datenbanken, keine Bearbeitung.
-- Kein ZIP64: Archive über 4 GB werden abgelehnt, ab 1 GB gibt es eine Warnung. Das ZIP entsteht im Arbeitsspeicher, große Exporte mit vielen Videos können am Handy zu groß sein.
-- ZIPs mit Kompression lesen nur Browser mit `DecompressionStream`. Sonst geht nur die `.txt`.
-- **Prüfsummen sind keine Signatur.** Sie belegen Unverändertheit nur gegenüber einer Liste, die du sicher aufbewahrst. Wer Dateien und Liste gemeinsam fälscht, wird nicht erkannt. Bewahre die Archivkennung getrennt vom Archiv auf.
-- Ein Export ohne Medien oder mit gekürztem Verlauf bleibt unvollständig. verlauf. archiviert nur, was im Export steht.
+- WhatsApp only. Other messengers are not planned, the specification leaves room for them.
+- Other languages and date variants (such as French or Spanish) are not tested and not recognized. Whatever does not match is reported as unrecognized.
+- Times are the device's local time without a time zone and are taken over unchanged.
+- No decryption, no reading of phone databases, no editing.
+- No ZIP64: archives over 4 GB are rejected, from 1 GB on there is a warning. The ZIP is built in memory, so large exports with many videos can be too big on a phone.
+- Compressed ZIPs can only be read by browsers with `DecompressionStream`. Otherwise only the `.txt` works.
+- **Checksums are not a signature.** They only prove that nothing changed relative to a list you keep safe. Someone who forges files and list together will not be detected. Keep the archive ID separate from the archive.
+- An export without media or with a shortened history stays incomplete. verlauf. only archives what is in the export.
 
-**Vermutung, nicht bewiesen:** Dass HTML ohne Skript und UTF-8-Klartext in Jahrzehnten lesbar bleiben, ist eine begründete Annahme. Ob Laien die Archivkennung tatsächlich getrennt aufbewahren, ist offen.
+**Assumption, not proven:** that HTML without scripts and UTF-8 plain text will stay readable for decades is a reasoned assumption. Whether non-technical people actually keep the archive ID separately is open.
 
-## Lizenz
+## License
 
-GNU Affero General Public License v3.0 (AGPL-3.0), siehe `LICENSE`.
+GNU Affero General Public License v3.0 (AGPL-3.0), see `LICENSE`.
+
+**Deutsch:** verlauf. sichert einen WhatsApp-Chat-Export als prüfbares Archiv aus HTML, Klartext und Originaldateien mit SHA-256-Prüfsummen, offline im Browser, ohne Upload und ohne Konto.
 
 ---
 
-**gedacht.gemacht.** Kleine, ehrliche Software. Alles bleibt auf deinem Gerät.
+**gedacht.gemacht.** Small, honest software. Everything stays on your device. · [More projects](https://github.com/gedachtgemacht)
